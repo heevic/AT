@@ -1,152 +1,273 @@
 @use "@/styles/variables";
 @use '@/styles/Breakpoints';
 
-/* Header(Navigation) */
-.header {
-  width: 100%;
-  height: auto;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-  z-index: 100;
-  background: variables.$base-background-main;
-  transition: background 0.5s;
+@media screen and (min-width: 991px) {
 
-  .nav {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 2rem;
+  /* Header(Navigation) */
+  .header {
+    width: 100%;
+    height: auto;
+    margin-bottom: 2rem;
+    background: variables.$base-background-main;
+    transition: background 0.5s;
+    z-index: 100;
+
+    .nav {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      position: relative;
+      height: 4rem;
+
+      .logo {
+        min-width: 350px;
+      }
+
+      /* [Navigation] Link Wrap */
+      .navLinkWrap {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        align-content: center;
+        height: 100%;
+        .navSession {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-width: 160px;
+          height: 100%;
+        }
+      }
+
+      .navMenu {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        align-content: center;
+        height: 100%;
+
+        .navItem {
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-style: normal;
+          font-weight: 600;
+          font-size: .9rem;
+          min-width: 150px;
+          height: 100%;
+          transition: all 0.25s ease-in-out;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #5050501a;
+
+            .subMenu {
+              display: block;
+            }
+          }
+
+          /* Dropdown Menu */
+          .subMenu {
+            position: absolute;
+            top: 100%;
+            margin: 0;
+            display: none;
+            min-width: 150px;
+            background-color: #fff;
+            box-shadow: 0px 2px 2px #5050501a;
+            z-index: 100;
+
+            /* Nested Submenu */
+            .subSubMenu {
+              position: absolute;
+              top: 0;
+              margin-left: 300px;
+              min-width: 150px;
+              max-width: 150px;
+              display: none;
+              background-color: #fff;
+              box-shadow: 0px 2px 2px #5050501a;
+              z-index: 101;
+            }
+          }
+
+          .navItem:hover .subMenu {
+            display: block;
+          }
+
+          .subMenu li {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 15px;
+            font-size: 14px;
+            height: 4rem;
+            background-color: #fff;
+            color: #333;
+            transition: all 0.25s ease-in-out;
+          }
+
+          .subMenu li:hover {
+            background-color: #5050501a;
+          }
+
+          .subMenu li:hover .subSubMenu {
+            display: block;
+          }
+
+          .subSubMenu li {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 15px;
+            font-size: 14px;
+            height: 4rem;
+            background-color: #fff;
+            color: #333;
+            transition: all 0.25s ease-in-out;
+          }
+
+          .subSubMenu li:hover {
+            background-color: #5050501a;
+          }
+
+        }
+
+      }
+    }
+  }
+
+
+
+  /* [Navigation User Session Wrap - Button]
+ * 로그인, 로그아웃 버튼 */
+  .create-btn {
+    margin: .5rem 0;
+    padding: .713rem .875rem;
+    background: transparent;
+    border: none;
+    color: #5D7D7D;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  /* [Navigation User Session Wrap]
+ * 로그인시 노출 */
+  .userSessionWrap {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-}
+    gap: 20px;
 
-/* [Navigation] Link Wrap */
-.navLinkWrap {
-  display: flex;
-  align-items: center;
-  gap: 12vw;
-}
-
-.navMenu {
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-  gap: 3rem;
-
-  .navItem {
-    position: relative;
-    font-style: normal;
-    font-weight: 600;
-    font-size: .9rem;
-    text-align: center;
-
-    /* [Link] 네비게이션 아이템 */
-    .navLink {
-      font-size: 1rem;
-      color: #333;
+    .alarm,
+    .userInfo {
+      display: flex;
+      align-items: center;
+      align-content: center;
+      gap: 20px;
+      color: variables.$color-dark-gray;
+      cursor: pointer;
     }
 
-    /* [active] 네비게이션 액티브 이벤트 */
-    .activeLink {
-      background: linear-gradient(93.51deg, #9B51E0 2.84%, #3081ED 99.18%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      border-bottom: 1.5px solid #9B51E0;
+    .user-session-info {
+      padding: .4rem .3rem .3rem;
+      font-weight: 500;
     }
   }
-}
 
-/* [Navigation User Session Wrap - Button]
- * 로그인, 로그아웃 버튼 */
-.create-btn {
-  margin: .5rem 0;
-  padding: .713rem .875rem;
-  background: transparent;
-  border: none;
-  color: #5D7D7D;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-}
-
-/* [Navigation User Session Wrap]
- * 로그인시 노출 */
-.userSessionWrap {
-  display: flex;
-  align-items: center;
-  align-content: center;
-  color: variables.$color-dark-gray;
-  cursor: pointer;
-  gap: 20px;
-
-  .user-session-info {
-    padding: .4rem .3rem .3rem;
-    font-weight: 500;
-  }
-}
-
-/* 반응형 메뉴 */
-.responsive-menu {
-  display: none;
-  svg {
-    margin: 0 0 2rem 0;
-  }
-
-  .navLinkWrap {
-    display: block;
-  }
-
-  .navMenu {
-    margin: 0 auto;
-    flex-direction: column;
+  .side_menu_open,
+  .side_menu {
+    display: none;
   }
 }
 
 /* TODO : Responsive Design */
 /* [Responsive Mobile] 768px */
-@include Breakpoints.respond-to('mobile') {
-  .navbar {
-    width: 100%;
-    padding: 0.7rem 1rem;
-    position: relative;
-  }
+@media screen and (max-width: 768px) {}
 
-  .navLinkWrap {
+@media screen and (max-width: 991px) {
+  .nav {
     display: none;
   }
 
-  .navMenu {
-    position: relative;
-    top: 60px;
-    right: 290px;
-  }
+  .side_menu {
+    display: grid;
+    grid-template-areas:
+      "header header"
+      "main main";
+    grid-template-rows: 6rem 1fr;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 990px;
+    margin: 0 auto;
+    padding: 0 1rem;
 
-  .responsive-menu {
-    display: block;
+    .side_menu-header {
+      grid-area: header;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1rem;
+      height: 6rem;
 
-    svg {
-      position: absolute;
-      top: 30px;
-      right: 350px;
+      .logo {
+        left: 0px;
+      }
     }
-  }
 
-  .navbar-logo {
-    position: absolute;
-    top: 30px;
-  }
+    .side_menu_footer {
+      position: absolute;
+      display: flex;
+      flex-direction: row;
+      margin: 1rem 16px;
+      padding: 12px 0 38px;
+      border-top: 1px solid rgba(0, 0, 0, .3);
+      right: 0;
+      top: 50px;
+      z-index: 50;
 
-  .navSession {
-    position: absolute;
-    top: 30px;
-    left: 670px;
+      .create-btn {
+        text-align: center;
+        align-items: center;
+        width: 100px;
+        padding: 0 1rem;
+        margin: 0;
+      }
+    }
 
-    span {
-      display: none;
+    .side_menu_body {
+      grid-area: main;
+      position: absolute;
+      z-index: 50;
+      box-shadow: 0px 2px 2px #5050501a;
+      top: 6rem;
+      left: 0;
+      max-width: 990px;
+      width: 100%;
+
+      .side_menu_list {
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        height: 460vh;
+
+        .side_menu_link {
+          padding: 2.8rem 3rem;
+          width: 100%;
+          background-color: #fff;
+          transition: all 0.25s ease-in-out;
+          outline: none;
+          border: none;
+
+          &:hover {
+            background-color: #5050501a;
+          }
+        }
+      }
     }
   }
 }
